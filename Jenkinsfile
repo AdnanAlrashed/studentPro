@@ -6,13 +6,13 @@ pipeline {
             steps {
                 git branch: 'main', 
                 url: 'https://github.com/AdnanAlrashed/studentPro.git',
-                credentialsId: 'jenkins_git_login'
+                credentialsId: 'github-token'
             }
         }
         
         stage('Build') {
             steps {
-                bat 'docker build -t studentapp .'
+                sh 'docker build -t studentapp .'
             }
         }
         

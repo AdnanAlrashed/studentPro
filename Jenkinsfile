@@ -1,27 +1,24 @@
 pipeline {
     agent any
     
-    environment {
-        DOCKER_IMAGE = 'studentapp-django'
-        DOCKER_TAG = "${env.BUILD_ID}"
-    }
-    
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/AdnanAlrashed/studentPro.git'
+                git branch: 'main', 
+                url: 'https://github.com/AdnanAlrashed/studentPro.git',
+                credentialsId: 'jenkins_git_login'
             }
         }
         
         stage('Build') {
             steps {
-                sh 'docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                sh 'docker build -t studentapp .'
             }
         }
         
         stage('Test') {
             steps {
-                sh 'docker run ${DOCKER_IMAGE}:${DOCKER_TAG} python manage.py test'
+                sh 'docker run studentapp python manage.py test'
             }
         }
         

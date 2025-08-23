@@ -1,0 +1,2 @@
+echo "media/squ.rar" >> .gitignore
+echo "*.rar" >> .gitignore

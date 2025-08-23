@@ -12,7 +12,7 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh 'docker build -t studentapp .'
+                bat 'docker build -t studentapp .'
             }
         }
         

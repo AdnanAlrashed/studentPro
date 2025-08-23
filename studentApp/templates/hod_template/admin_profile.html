@@ -1,0 +1,71 @@
+{% extends 'hod_template/base_template.html' %}
+{% load i18n %}
+{% block page_title %}
+{% trans "Edit Profile" %}
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+       <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">{% trans "Edit Profile" %}</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="{% url 'admin_profile_save' %}" method='post'>
+              {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>{% trans "UserName" %}</label>
+                    <input type="text" class="form-control" name='username' value="{{ user.username }}" disabled="disabled">
+                  </div>
+                    <div class="form-group">
+                      <label>{% trans "Email" %}</label>
+                      <input type="text" class="form-control" name='email' value="{{ user.email }}" disabled="disabled">
+                    </div>
+                    <div class="form-group">
+                      <label>{% trans "First Name" %}</label>
+                      <input type="text" class="form-control" name='first_name' value="{{ user.first_name }}">
+                    </div>
+                    <div class="form-group">
+                      <label>{% trans "Last Name" %}</label>
+                      <input type="text" class="form-control" name='last_name' value="{{ user.last_name }}" >
+                    </div>
+                    <div class="form-group">
+                      <label>{% trans "Change Password" %}</label>
+                      <input type="text" class="form-control" name='password' placeholder="fill only if you want to change Password">
+                    </div>
+                </div>
+                  <div class="form-group">
+                      {% if messages %}
+                      <div class="col-12">
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+          <!-- /.col -->
+        </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">{% trans "Save Profile" %}</button>
+                </div>
+              </form>
+            </div>
+          
+
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    {% endblock main_content %}

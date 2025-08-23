@@ -1,0 +1,98 @@
+{% extends 'student_template/base_template.html' %}
+{% block page_title %}
+Stusent Result
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+          <!-- left column -->
+      <div class="col-md-12">
+            <!-- general form elements -->
+        
+
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Result</h3>
+          </div>
+
+          <div class="table">
+          <table class="table">
+            <tr>
+              <th>ID</th>
+              <th>Subject</th>
+              <th>Assignment Marks</th>
+              <th>Exam Marks</th>
+              <th>Status</th>
+            </tr>
+            {% for row in studentresult %}
+              <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.subject_id.subject_name }}</td>
+                <td>{{ row.subject_assignment_marks }}</td>
+                <td>{{ row.subject_exam_marks }}</td>
+                <td>
+                  {% if row.subject_exam_marks >= 30 %}
+                  <span class="alert alert-success">PASS</span>
+                  {% else %}
+                  <span class="alert alert-danger">FAIL</span>
+                  {% endif %}
+                </td>
+
+              </tr>
+            {% endfor %}
+            <!-- <tr>
+              <td id="totgrade"></td>
+            </tr> -->
+          </table>
+        </div>
+        </div>
+        <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Total of Exam</h3>
+            </div>
+  
+            <div class="table">
+            <table class="table">
+              <tr>
+                <th>Total of Exam</th>
+                <th>Status</th>
+                <th>Grade</th>
+              </tr>
+            
+                <tr>
+                
+                  <td id="totgrade"></td>
+             
+                  <td>
+                    {% if row.subject_exam_marks >= 30 %}
+                    <span class="alert alert-success">PASS</span>
+                    {% else %}
+                    <span class="alert alert-danger">FAIL</span>
+                    {% endif %}
+                  </td>
+                  <td></td>
+                </tr>
+            </table>
+          </div>
+          </div>
+      </div>
+  </div>
+</div>
+    </section>
+    <!-- /.content -->
+    {% endblock main_content %}
+{% block custom_js %}
+<script>
+  $(document).ready(function(){
+    var stdgrade;
+    var totalgrade = 0;
+    $('td:nth-child(4)').each(function(){
+      stdgrade=$(this).html();
+      totalgrade+=parseFloat(stdgrade);
+      $('#totgrade').text(totalgrade)
+    })
+  })
+</script>
+{% endblock custom_js %}

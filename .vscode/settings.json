@@ -1,0 +1,10 @@
+{
+    "jupyter.jupyterServerType": "local",
+    "editor.suggest.showStatusBar": true,
+    "python.pythonPath": "C:\\python\\python3.9.1\\python.exe",
+    "liveServer.settings.port": 5501,
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.prospectorEnabled": true,
+    "python.analysis.typeCheckingMode": "basic"
+}

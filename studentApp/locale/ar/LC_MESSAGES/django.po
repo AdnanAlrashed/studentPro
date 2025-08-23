@@ -1,0 +1,346 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-26 17:25+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+#: .\studentApp\templates\hod_template\add_course_template.html:4
+#: .\studentApp\templates\hod_template\sidebar_template.html:102
+msgid "Add Course"
+msgstr "أضف دوره"
+
+#: .\studentApp\templates\hod_template\add_course_template.html:16
+msgid "Add New Course"
+msgstr "أضف دورة جديدة"
+
+#: .\studentApp\templates\hod_template\add_course_template.html:24
+#: .\studentApp\templates\hod_template\edit_course_template.html:24
+msgid "Course Name"
+msgstr "أسم الدورة"
+
+#: .\studentApp\templates\hod_template\add_course_template.html:45
+#: .\studentApp\templates\hod_template\edit_course_template.html:46
+msgid "Save Course"
+msgstr "حفظ الدورة"
+
+#: .\studentApp\templates\hod_template\add_staff_template.html:4
+#: .\studentApp\templates\hod_template\add_staff_template.html:16
+msgid "Add Emplyees"
+msgstr "إضافة المدربين"
+
+#: .\studentApp\templates\hod_template\add_staff_template.html:24
+#: .\studentApp\templates\hod_template\admin_profile.html:28
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: .\studentApp\templates\hod_template\add_staff_template.html:28
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: .\studentApp\templates\hod_template\add_staff_template.html:32
+#: .\studentApp\templates\hod_template\admin_profile.html:32
+msgid "First Name"
+msgstr "الإسم الأول"
+
+#: .\studentApp\templates\hod_template\add_staff_template.html:36
+#: .\studentApp\templates\hod_template\admin_profile.html:36
+#: .\studentApp\templates\hod_template\edit_staff_template.html:32
+msgid "Last Name"
+msgstr "الإسم الأخير"
+
+#: .\studentApp\templates\hod_template\add_staff_template.html:40
+msgid "User Name"
+msgstr "إسم المستخدم"
+
+#: .\studentApp\templates\hod_template\add_staff_template.html:44
+#: .\studentApp\templates\hod_template\edit_staff_template.html:41
+msgid "Address"
+msgstr "العنوان"
+
+#: .\studentApp\templates\hod_template\add_student_template.html:4
+msgid "Page_Add_Trining"
+msgstr "إضافة المتدربين"
+
+#: .\studentApp\templates\hod_template\add_student_template.html:16
+msgid "Add Trining"
+msgstr "إضافة المتدربين"
+
+#: .\studentApp\templates\hod_template\add_student_template.html:47
+msgid "Email Not Available"
+msgstr "البريد الإلكتروني غير متاح"
+
+#: .\studentApp\templates\hod_template\add_student_template.html:51
+msgid "Email Available"
+msgstr "البريد الإلكتروني متاح"
+
+#: .\studentApp\templates\hod_template\add_student_template.html:77
+msgid "Username Not Available"
+msgstr "اسم المستخدم غير متاح"
+
+#: .\studentApp\templates\hod_template\add_student_template.html:81
+msgid "Username Available"
+msgstr "اسم المستخدم متاح"
+
+#: .\studentApp\templates\hod_template\add_subject_template.html:4
+#: .\studentApp\templates\hod_template\add_subject_template.html:16
+#: .\studentApp\templates\hod_template\add_subject_template.html:61
+#: .\studentApp\templates\hod_template\sidebar_template.html:128
+msgid "Add Subject"
+msgstr "إضافة الأقسام"
+
+#: .\studentApp\templates\hod_template\add_subject_template.html:24
+msgid "Subject Name"
+msgstr "إسم القسم"
+
+#: .\studentApp\templates\hod_template\add_subject_template.html:28
+msgid "Course"
+msgstr "الدورة"
+
+#: .\studentApp\templates\hod_template\add_subject_template.html:36
+msgid "Staff"
+msgstr "المدرب"
+
+#: .\studentApp\templates\hod_template\admin_profile.html:4
+#: .\studentApp\templates\hod_template\admin_profile.html:16
+msgid "Edit Profile"
+msgstr "تعديل الصفحة"
+
+#: .\studentApp\templates\hod_template\admin_profile.html:24
+#: .\studentApp\templates\hod_template\edit_staff_template.html:37
+msgid "UserName"
+msgstr "إسم المستخدم"
+
+#: .\studentApp\templates\hod_template\admin_profile.html:40
+msgid "Change Password"
+msgstr "تغيير كلمة المرور"
+
+#: .\studentApp\templates\hod_template\admin_profile.html:62
+msgid "Save Profile"
+msgstr "حفظ الصفحة"
+
+#: .\studentApp\templates\hod_template\admin_view_attendance.html:4
+#: .\studentApp\templates\hod_template\admin_view_attendance.html:16
+#: .\studentApp\templates\hod_template\sidebar_template.html:190
+msgid "View Attendance"
+msgstr "عرض التحضير"
+
+#: .\studentApp\templates\hod_template\admin_view_attendance.html:23
+msgid "Subject"
+msgstr "القسم"
+
+#: .\studentApp\templates\hod_template\admin_view_attendance.html:32
+msgid "Session Year"
+msgstr "تاريخ سريان الدورة"
+
+#: .\studentApp\templates\hod_template\admin_view_attendance.html:35
+msgid "TO"
+msgstr "إلى"
+
+#: .\studentApp\templates\hod_template\admin_view_attendance.html:40
+msgid "Fetch Attendance Date"
+msgstr "إحضار بيانات التحضير"
+
+#: .\studentApp\templates\hod_template\admin_view_attendance.html:43
+msgid "Attendance Data"
+msgstr "بيانات التحضير"
+
+#: .\studentApp\templates\hod_template\admin_view_attendance.html:54
+msgid "Fetch student Data"
+msgstr "إحضار بيانات المتدربين"
+
+#: .\studentApp\templates\hod_template\base_template.html:8
+msgid "Student Management"
+msgstr "إدارة شؤون الأكاديمية"
+
+#: .\studentApp\templates\hod_template\base_template.html:44
+msgid "Shoaa Alnore Acadimy for Training"
+msgstr "أكاديمية شعاع النور للتدريب والتأهيل"
+
+#: .\studentApp\templates\hod_template\base_template.html:50
+msgid "Log Out"
+msgstr "تسجيل الخروج"
+
+#: .\studentApp\templates\hod_template\base_template.html:73
+#: .\studentApp\templates\hod_template\home_content.html:4
+msgid "Home"
+msgstr "الصفحة الرئيسيه"
+
+#: .\studentApp\templates\hod_template\edit_course_template.html:4
+#: .\studentApp\templates\hod_template\edit_course_template.html:16
+msgid "Edit Course"
+msgstr "تعديل الدورة"
+
+#: .\studentApp\templates\hod_template\edit_staff_template.html:4
+#: .\studentApp\templates\hod_template\edit_staff_template.html:16
+msgid "Edit Staff"
+msgstr "حفظ الدورة"
+
+#: .\studentApp\templates\hod_template\edit_staff_template.html:24
+msgid "Email address"
+msgstr "البريد الإلكتروني"
+
+#: .\studentApp\templates\hod_template\edit_staff_template.html:28
+msgid "Frist Name"
+msgstr "الإسم الأول"
+
+#: .\studentApp\templates\hod_template\edit_staff_template.html:62
+msgid "Save Staff"
+msgstr "حفظ المدرب"
+
+#: .\studentApp\templates\hod_template\edit_student_template.html:4
+#: .\studentApp\templates\hod_template\edit_student_template.html:17
+msgid "Edit Stusent"
+msgstr "تعديل المتدرب"
+
+#: .\studentApp\templates\hod_template\home_content.html:17
+msgid "Total Students"
+msgstr "إجمالي المتدربين"
+
+#: .\studentApp\templates\hod_template\home_content.html:22
+#: .\studentApp\templates\hod_template\home_content.html:37
+#: .\studentApp\templates\hod_template\home_content.html:52
+#: .\studentApp\templates\hod_template\home_content.html:67
+msgid "More info"
+msgstr "مزيد من المعلومات"
+
+#: .\studentApp\templates\hod_template\home_content.html:32
+msgid "Total Staffs"
+msgstr "إجمالي المدربين"
+
+#: .\studentApp\templates\hod_template\home_content.html:47
+msgid "Total Courses"
+msgstr "إجمالي الدورات"
+
+#: .\studentApp\templates\hod_template\home_content.html:62
+msgid "Total Subject"
+msgstr "إجمالي الأقسام"
+
+#: .\studentApp\templates\hod_template\home_content.html:76
+msgid "Students and Staff Chart"
+msgstr "مخطط المدربين والمتدربين"
+
+#: .\studentApp\templates\hod_template\home_content.html:93
+msgid "Total Subject in Each Courses"
+msgstr "إجمالي الأقسام في الدورات"
+
+#: .\studentApp\templates\hod_template\home_content.html:112
+msgid "Total Students in Each Courses"
+msgstr "إجمالي المتدربين في الدورات"
+
+#: .\studentApp\templates\hod_template\home_content.html:129
+msgid "Total Students in Each Subject"
+msgstr "إجمالي المتدربين في الأقسام"
+
+#: .\studentApp\templates\hod_template\home_content.html:148
+msgid "Staff Leaves VS Attendance"
+msgstr ""
+
+#: .\studentApp\templates\hod_template\home_content.html:169
+msgid "Student Leaves VS Attendance"
+msgstr ""
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:33
+msgid "Home Page"
+msgstr "الصفحة الرئيسيه"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:41
+msgid "Empleeys"
+msgstr "المدربين"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:50
+msgid "Add Empleey"
+msgstr "أضف مدرب"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:58
+msgid "Manage Empleeys"
+msgstr "إدارة المدربين"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:67
+msgid "Traineds"
+msgstr "المتدربين"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:76
+msgid "Add Trained"
+msgstr "أضف متدرب"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:84
+msgid "Manage Traineds"
+msgstr "إدارة المتدربين"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:93
+msgid "Courses"
+msgstr "الدورات"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:110
+msgid "Manage Courses"
+msgstr "إدارة الدورات"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:119
+msgid "Subjects"
+msgstr "الأقسام"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:136
+msgid "Manage Subjects"
+msgstr "إدارة الأقسام"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:143
+msgid "Manage session Year"
+msgstr "إدارة تاريخ السريان"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:152
+msgid "Informations"
+msgstr "المعلومات"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:162
+msgid "Stusent Feedback"
+msgstr "تعقيب المتدرب"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:169
+msgid "Staff Feedback"
+msgstr "تعقيب المدرب"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:176
+msgid "Staff Leave"
+msgstr "إذن المدرب"
+
+#: .\studentApp\templates\hod_template\sidebar_template.html:183
+msgid "Student Leave"
+msgstr "إذن المتدرب"
+
+#: .\studentApp\templates\login_page.html:8
+msgid "Studemt App | Log in"
+msgstr "صفحة الدخول"
+
+#: .\studentApp\templates\login_page.html:26
+msgid "Stusent"
+msgstr "تطبيق شؤون"
+
+#: .\studentApp\templates\login_page.html:26
+msgid "App"
+msgstr "المتدربين"
+
+#: .\studentApp\templates\login_page.html:31
+msgid "Sign in to Student App"
+msgstr "تسجيل الدخول الى التطبيق"
+
+#: .\studentApp\templates\login_page.html:54
+msgid "Sign In"
+msgstr "تسجيل دخول"
+
+#: .\studentApp\templates\login_page.html:58
+msgid "Reset Password"
+msgstr "إعادة تعيين كلمة المرور"

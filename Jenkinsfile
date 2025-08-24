@@ -127,9 +127,9 @@ pipeline {
     }
     
     // إعداد environment variables
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-        SLACK_CHANNEL = '#deployments'
-        BUILD_ID = "${env.BUILD_NUMBER}"
-    }
+    // environment {
+    //     DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
+    //     SLACK_CHANNEL = '#deployments'
+    //     BUILD_ID = "${env.BUILD_NUMBER}"
+    // }
 }

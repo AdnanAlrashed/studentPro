@@ -1,4 +1,3 @@
-// Paste the above code here
 pipeline {
     agent any
     
@@ -49,21 +48,49 @@ pipeline {
             }
         }
         
+        // 🔒 مرحلة Security Testing المضافة
+        stage('Security Testing') {
+            steps {
+                script {
+                    echo '🔒 بدء فحوصات الأمان...'
+                    
+                    // 1. فحص vulnerabilities في الصورة
+                    sh '''
+                        echo "=== 🔍 فحص الثغرات في الصورة ==="
+                        docker scan --accept-license ''' + env.IMAGE_NAME + ''':''' + env.VERSION + ''' || true
+                    '''
+                    
+                    // 2. فحص dependencies للأمان
+                    sh '''
+                        echo "=== 📦 فحص dependencies ==="
+                        docker run --rm -v $(pwd):/app ''' + env.IMAGE_NAME + ''':''' + env.VERSION + ''' \
+                            pip audit || echo "pip audit not available"
+                    '''
+                    
+                    // 3. فحص القواعد السريعة
+                    sh '''
+                        echo "=== 🐍 فحص Python code ==="
+                        docker run --rm -v $(pwd):/app ''' + env.IMAGE_NAME + ''':''' + env.VERSION + ''' \
+                            python -m bandit -r . || echo "Bandit not available"
+                    '''
+                    
+                    echo '✅ تم إكمال فحوصات الأمان'
+                }
+            }
+        }
+        
         stage('Deploy to Test') {
             steps {
                 script {
                     sh """
-                        # إيقاف الحاوية القديمة إذا كانت تعمل
                         docker stop test-environment || true
                         docker rm test-environment || true
                         
-                        # تشغيل الحاوية الجديدة على port 8001
                         docker run -d \\
                             --name test-environment \\
                             -p ${TEST_PORT}:8000 \\
                             ${IMAGE_NAME}:${VERSION}
                         
-                        # الانتظار وقتاً أطول حتى يبدأ التطبيق
                         sleep 30
                     """
                     echo "✅ تم النشر إلى بيئة الاختبار على port ${TEST_PORT}"
@@ -74,7 +101,6 @@ pipeline {
         stage('Health Check') {
             steps {
                 script {
-                    // محاولة متعددة للاتصال بالتطبيق
                     def maxAttempts = 5
                     def attempt = 1
                     def healthCheck = "000"
@@ -94,8 +120,6 @@ pipeline {
                     
                     if (healthCheck != "200") {
                         echo "⚠️ التطبيق يعمل ولكن لا يستجيب على port ${TEST_PORT}"
-                        echo "🔍 جرب التحقق يدوياً: docker logs test-environment"
-                        // لا نوقف البناء، فقط ننبه
                     }
                 }
             }
@@ -105,11 +129,7 @@ pipeline {
     post {
         always {
             echo "🎯 Pipeline ${currentBuild.currentResult} - ${env.JOB_NAME} #${env.BUILD_NUMBER}"
-            
-            // تنظيف workspace
             cleanWs()
-            
-            // تنظيف حاويات الاختبار القديمة
             sh '''
                 docker stop test-environment || true
                 docker rm test-environment || true

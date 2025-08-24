@@ -47,7 +47,23 @@ pipeline {
                 }
             }
         }
-        
+        stage('Advanced Security Scan') {
+        steps {
+            script {
+                // استخدام Trivy لفحص أكثر تقدمًا
+                sh """
+                    docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \\
+                        aquasec/trivy image ${IMAGE_NAME}:${VERSION}
+                """
+                
+                // أو OWASP ZAP للفحص الديناميكي
+                sh """
+                    docker run --rm -t owasp/zap2docker-stable zap-baseline.py \\
+                        -t http://localhost:${TEST_PORT} || true
+                """
+            }
+        }
+    }
         // 🔒 مرحلة Security Testing المضافة
         stage('Security Testing') {
             steps {

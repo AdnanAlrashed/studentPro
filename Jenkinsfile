@@ -64,6 +64,67 @@ pipeline {
             }
         }
     }
+        
+        stage('Security Scan') {
+            steps {
+                script {
+                    echo '🔍 بدء الفحص الأمني المتقدم...'
+                    
+                    // بناء أداة Security Scanner
+                    sh '''
+                        git clone https://github.com/AdnanAlrashed/security-scanner.git
+                        cd security-scanner
+                        docker build -t security-scanner:latest .
+                        cd ..
+                    '''
+                    
+                    // تشغيل الفحص الأمني
+                    sh """
+                        docker run --rm \
+                            -v /var/run/docker.sock:/var/run/docker.sock \
+                            security-scanner:latest \
+                            --image ${IMAGE_NAME}:${VERSION} \
+                            --format json \
+                            --output /tmp/security_scan
+                    """
+                    
+                    // نسخ التقرير
+                    sh '''
+                        mkdir -p security-reports
+                        docker run --rm \
+                            -v $(pwd)/security-reports:/output \
+                            -v /tmp:/tmp \
+                            alpine:latest \
+                            cp /tmp/security_scan.json /output/security_report.json
+                    '''
+                    
+                    // تحليل النتائج
+                    script {
+                        def report = readJSON file: 'security-reports/security_report.json'
+                        def critical = report.summary.critical ?: 0
+                        def high = report.summary.high ?: 0
+                        
+                        echo "📊 نتائج الفحص الأمني:"
+                        echo "🔴 الثغرات الحرجة: ${critical}"
+                        echo "🟠 الثغرات العالية: ${high}"
+                        echo "📋 الإجمالي: ${report.summary.total_vulnerabilities}"
+                        
+                        if (critical > 0) {
+                            error "❌ فشل: تم اكتشاف ${critical} ثغرة حرجة!"
+                        }
+                        
+                        if (high > 3) {
+                            unstable "⚠️ تحذير: تم اكتشاف ${high} ثغرة عالية الخطورة"
+                        }
+                        
+                        if (report.summary.total_vulnerabilities == 0) {
+                            echo "🎉 ممتاز! لا توجد ثغرات أمنية"
+                        }
+                    }
+                }
+            }
+        }
+        
         // 🔒 مرحلة Security Testing المضافة
         stage('Security Testing') {
             steps {

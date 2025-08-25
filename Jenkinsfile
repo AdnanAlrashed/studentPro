@@ -292,7 +292,7 @@ except Exception as e:
                 View build: ${env.BUILD_URL}
                 Download reports: ${env.BUILD_URL}artifact/
                 """,
-                to: "adnanalrashed77@gmail"
+                to: "adnanalrashed77@gmail.com"
             )
         }
         
@@ -312,7 +312,7 @@ except Exception as e:
                 View build: ${env.BUILD_URL}
                 Check logs for details.
                 """,
-                to: "adnanalrashed77@gmail"
+                to: "adnanalrashed77@gmail.com"
             )
         }
         
@@ -332,7 +332,7 @@ except Exception as e:
                 View build: ${env.BUILD_URL}
                 Check reports for security warnings.
                 """,
-                to: "adnanalrashed77@gmail"
+                to: "adnanalrashed77@gmail.com"
             )
         }
     }

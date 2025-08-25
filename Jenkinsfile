@@ -51,75 +51,28 @@ pipeline {
         stage('Security Scan') {
             steps {
                 script {
-                    echo '🔍 بدء الفحص الأمني المتقدم...'
+                    echo '🔍 فحص أمان باستخدام docker scan...'
                     
-                    // محاولة Clone مع معالجة الأخطاء
-                    sh '''
-                        # محاولة Clone مع fallback
-                        if [ ! -d "security-scanner" ]; then
-                            git clone https://github.com/AdnanAlrashed/security-scanner.git || \
-                            git clone git@github.com:AdnanAlrashed/security-scanner.git || \
-                            echo "⚠️ فشل Clone، جاري استخدام Docker image مباشرة"
-                        fi
-                        
-                        # إذا كان المجلد موجوداً، بناء الأداة
-                        if [ -d "security-scanner" ]; then
-                            cd security-scanner
-                            docker build -t security-scanner:latest .
-                            cd ..
-                        else
-                            # إذا فشل Clone، حاول سحب image مباشرة
-                            docker pull adnanalrashed/security-scanner:latest || \
-                            docker tag security-scanner security-scanner:latest || \
-                            echo "⚠️ استخدام image محلي إذا موجود"
-                        fi
-                    '''
-                    
-                    // تشغيل الفحص الأمني مع معالجة الأخطاء
                     sh """
-                        docker run --rm \
-                            -v /var/run/docker.sock:/var/run/docker.sock \
-                            security-scanner:latest \
-                            --image ${IMAGE_NAME}:${VERSION} \
-                            --format json \
-                            --output /tmp/security_scan || \
-                        echo "⚠️ فشل الفحص الأمني، لكننا نكمل"
+                        docker scan --accept-license ${IMAGE_NAME}:${VERSION} > scan-result.txt || true
                     """
                     
-                    // إذا فشل الفحص، إنشاء تقرير فارغ
+                    // تحليل النتائج
                     sh '''
-                        if [ ! -f "/tmp/security_scan.json" ]; then
-                            echo '{"summary": {"total_vulnerabilities": 0, "critical": 0, "high": 0, "medium": 0, "low": 0}}' > /tmp/security_scan.json
+                        CRITICAL=$(grep -c "CRITICAL" scan-result.txt || echo 0)
+                        HIGH=$(grep -c "HIGH" scan-result.txt || echo 0)
+                        
+                        echo "📊 النتائج:"
+                        echo "🔴 حرجة: $CRITICAL"
+                        echo "🟠 عالية: $HIGH"
+                        
+                        if [ "$CRITICAL" -gt 0 ]; then
+                            echo "❌ ثغرات حرجة!"
+                            exit 1
                         fi
                     '''
                     
-                    // نسخ التقرير
-                    sh '''
-                        mkdir -p security-reports
-                        docker run --rm \
-                            -v $(pwd)/security-reports:/output \
-                            -v /tmp:/tmp \
-                            alpine:latest \
-                            cp /tmp/security_scan.json /output/security_report.json || \
-                        cp /tmp/security_scan.json security-reports/security_report.json || \
-                        echo '{"summary": {"total_vulnerabilities": 0}}' > security-reports/security_report.json
-                    '''
-                    
-                    // تحليل النتائج
-                    script {
-                        def report = readJSON file: 'security-reports/security_report.json'
-                        def critical = report.summary.critical ?: 0
-                        def high = report.summary.high ?: 0
-                        
-                        echo "📊 نتائج الفحص الأمني:"
-                        echo "🔴 الثغرات الحرجة: ${critical}"
-                        echo "🟠 الثغرات العالية: ${high}"
-                        echo "📋 الإجمالي: ${report.summary.total_vulnerabilities ?: 0}"
-                        
-                        if (critical > 0) {
-                            error "❌ فشل: تم اكتشاف ${critical} ثغرة حرجة!"
-                        }
-                    }
+                    archiveArtifacts artifacts: 'scan-result.txt', fingerprint: true
                 }
             }
         }

@@ -114,9 +114,9 @@ pipeline {
                 script {
                     echo '🐍 بدء فحص Django المخصص...'
                     
-                    // فحص إعدادات Django الأمنية
-                    sh """
-                        docker run --rm -v $(pwd):/app ${IMAGE_NAME}:${VERSION} \
+                    // فحص إعدادات Django الأمنية - استخدام single quotes لتجنب مشاكل $
+                    sh '''
+                        docker run --rm -v $(pwd):/app ''' + env.IMAGE_NAME + ''':''' + env.VERSION + ''' \
                             python -c "
 import os
 import django
@@ -152,9 +152,9 @@ try:
         print('✅ No Django security issues found')
         
 except Exception as e:
-    print(f'⚠️ Error checking Django settings: {e}')
+    print(f'⚠️ Error checking Django settings: {e}")
                             " > django-security-check.txt
-                    """
+                    '''
                     
                     // تحليل نتائج فحص Django
                     sh '''
@@ -292,7 +292,7 @@ except Exception as e:
                 View build: ${env.BUILD_URL}
                 Download reports: ${env.BUILD_URL}artifact/
                 """,
-                to: "adnanalrashed77@gmail.com"
+                to: "adnanalrashed77@gmail"
             )
         }
         
@@ -312,7 +312,7 @@ except Exception as e:
                 View build: ${env.BUILD_URL}
                 Check logs for details.
                 """,
-                to: "adnanalrashed77@gmail.com"
+                to: "adnanalrashed77@gmail"
             )
         }
         
@@ -332,7 +332,7 @@ except Exception as e:
                 View build: ${env.BUILD_URL}
                 Check reports for security warnings.
                 """,
-                to: "adnanalrashed77@gmail.com"
+                to: "adnanalrashed77@gmail"
             )
         }
     }
